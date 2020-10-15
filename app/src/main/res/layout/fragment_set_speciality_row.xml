@@ -1,0 +1,41 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="layoutPosition"
+            type="Integer" />
+
+        <variable
+            name="data"
+            type="com.nobias.businesslogic.pojo.PojoSpeciality" />
+
+        <variable
+            name="onContentClickListener"
+            type="com.nobias.businesslogic.interfaces.OnClickSpecialities" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{(v) -> onContentClickListener.onClickSpeciality(v, layoutPosition, data)}"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_two"
+            android:padding="@dimen/margin_ten"
+            android:text='@{data.name ?? ""}'
+            android:textColor='@{data.selected ? @color/colorAccent : @color/colorBlack}'
+            android:textSize="@dimen/textsize_sixteen" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </RelativeLayout>
+</layout>

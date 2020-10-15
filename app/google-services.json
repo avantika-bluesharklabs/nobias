@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "900637430056",
+    "firebase_url": "https://nobias-2df72.firebaseio.com",
+    "project_id": "nobias-2df72",
+    "storage_bucket": "nobias-2df72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900637430056:android:11106eab4f861cb367c01d",
+        "android_client_info": {
+          "package_name": "com.nobias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900637430056-cq05chqqc9i7iq8bgibblp55nfl8n7or.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nobias",
+            "certificate_hash": "ada7526a9810037735a5e3e7f648d5ccd6092684"
+          }
+        },
+        {
+          "client_id": "900637430056-pbasbs191cr3khcheoo9qm4ddkcejnob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE-key_G9TaGuGUmLL69IqB_NuENg1hVE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900637430056-pbasbs191cr3khcheoo9qm4ddkcejnob.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "900637430056-sjs2mn21mc8dggnn3pprd0dkojrevcq8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mediaura.nobias"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

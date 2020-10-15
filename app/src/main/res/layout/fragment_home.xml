@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelHome" />
+
+        <variable
+            name="onRefreshListener"
+            type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <com.nobias.utils.NonSwipeableViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tabs" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorColor="@color/colorBlack"
+            android:background="@color/colorPrimary"
+            app:tabGravity="fill"
+            app:tabTextAppearance="@style/AppTabTextAppearance"
+            app:tabMode="fixed">
+
+            <!--<com.google.android.material.tabs.TabItem
+                android:id="@+id/tabSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:icon="@drawable/icon_schedule"
+                android:text="@string/schedule" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabNobias"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:icon="@drawable/icon_nobias_only" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:icon="@drawable/icon_settings"
+                android:text="@string/settings" />
+-->
+        </com.google.android.material.tabs.TabLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:elevation="@dimen/margin_eight"
+            android:visibility="@{viewModel.observableShowLoading ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

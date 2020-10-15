@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="activity"
+            type="com.nobias.view.activities.ActivitySecurityInfo" />
+
+        <variable
+            name="vmPastConsultantRating"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelPastConsultantRating" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/splash">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_twenty"
+                android:text="@string/rating_thanks_text"
+                android:textColor="@color/colorBlack" />
+
+            <RatingBar
+                android:id="@+id/rtrStar"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:rating="@={vmPastConsultantRating.observerRating}"
+                android:theme="@style/RatingBar" />
+
+            <Button
+                android:id="@+id/button_save"
+                style="@style/buttonStyleMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="@{!vmPastConsultantRating.observerProgressBar}"
+                android:onClick="@{() -> vmPastConsultantRating.onSaveClick()}"
+                android:padding="@dimen/margin_ten"
+                android:text="@string/save" />
+
+
+        </LinearLayout>
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmPastConsultantRating.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

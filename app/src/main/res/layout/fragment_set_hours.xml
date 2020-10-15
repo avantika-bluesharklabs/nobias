@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmSetHours"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelSetHours" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/set_hours_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_save"
+            android:layout_below="@+id/txtTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/txtMonday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/monday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearMondayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/imgMondayClose"
+                        android:layout_toEndOf="@+id/txtMonday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_ten"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtMondayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="@string/start"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagMondayStart"
+                                android:text="@={vmSetHours.observerMonTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtMondayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:autofillHints="@string/end"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagMondayEnd"
+                                android:text="@={vmSetHours.observerMonFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgMondayClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagMondayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isMonCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtTuesday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/tuesday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearTuesdayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgTuesClose"
+                        android:layout_toRightOf="@+id/txtTuesday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtTuesdayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagTuesdayStart"
+                                android:text="@={vmSetHours.observerTuesTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtTuesdayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagTuesdayEnd"
+                                android:text="@={vmSetHours.observerTuesFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgTuesClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagTuesdayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isTuesCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtWednesday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/wednesday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearWednesdayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgWedClose"
+                        android:layout_toRightOf="@+id/txtWednesday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtWednesdayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagWednesdayStart"
+                                android:text="@={vmSetHours.observerWedTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtWednesdayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagWednesdayEnd"
+                                android:text="@={vmSetHours.observerWedFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgWedClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagWednesdayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isWedCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtThursday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/thursday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearThursdayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgThursClose"
+                        android:layout_toRightOf="@+id/txtThursday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtThursdayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagThursdayStart"
+                                android:text="@={vmSetHours.observerThursTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtThursdayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagThursdayEnd"
+                                android:text="@={vmSetHours.observerThursFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgThursClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagThursdayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isThursCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtFriday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/friday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearFridayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgFridayClose"
+                        android:layout_toRightOf="@+id/txtFriday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtFridayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagFridayStart"
+                                android:text="@={vmSetHours.observerFriTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtFridayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagFridayEnd"
+                                android:text="@={vmSetHours.observerFriFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgFridayClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagFridayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isFriCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtSaturday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/saturday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearSaturdayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgSatClose"
+                        android:layout_toRightOf="@+id/txtSaturday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtSaturdayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagSaturdayStart"
+                                android:text="@={vmSetHours.observerSatTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtSaturdayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagSaturdayEnd"
+                                android:text="@={vmSetHours.observerSatFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgSatClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagSaturdayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isSatCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtSunday"
+                        android:layout_width="@dimen/margin_one_hundred_thirty"
+                        android:layout_height="@dimen/margin_eighty"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="@string/sunday"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/linearSundayHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgSunClose"
+                        android:layout_toRightOf="@+id/txtSunday"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="@string/available_hours"
+                            android:textSize="@dimen/textsize_twelve"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtSundayStart"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/start"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagSundayStart"
+                                android:text="@={vmSetHours.observerSunTo}"
+                                android:textSize="@dimen/textsize_twelve" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to" />
+
+                            <EditText
+                                android:id="@+id/edtSundayEnd"
+                                android:layout_width="@dimen/margin_sixtyfour"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:hint="@string/end"
+                                android:inputType="number"
+                                android:onClick="@{(view) -> vmSetHours.onToFromClick(view.getTag().toString())}"
+                                android:tag="@string/tagSundayEnd"
+                                android:text="@={vmSetHours.observerSunFrom}"
+                                android:textSize="@dimen/textsize_twelve" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/imgSunClose"
+                        android:layout_width="@dimen/margin_twenty"
+                        android:layout_height="@dimen/margin_twenty"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/margin_six"
+                        android:layout_marginEnd="@dimen/margin_ten"
+                        android:background="@drawable/close_bg"
+                        android:gravity="center"
+                        android:onClick="@{(view) -> vmSetHours.onCloseClick(view.getTag().toString())}"
+                        android:tag="@string/tagSundayClose"
+                        android:text="X"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:visibility="@{vmSetHours.isSunCloseVisible ? View.VISIBLE : View.GONE}" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button_save"
+            style="@style/buttonStyleMargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_twenty"
+            android:clickable="@{!vmSetHours.observerProgressBar}"
+            android:onClick="@{() -> vmSetHours.onSaveClick()}"
+            android:padding="@dimen/margin_ten"
+            android:text="@string/save" />
+
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmSetHours.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmTwilio"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelTwilio" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearProgress"
+            android:layout_centerHorizontal="true"
+            android:visibility="@{vmTwilio.observableTwilioConnected ? View.GONE : View.VISIBLE}"
+            android:src="@drawable/logo_nobias" />
+
+        <LinearLayout
+            android:id="@+id/linearProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/waiting_connect"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textsize_eighteen" />
+
+            <ProgressBar
+                android:id="@+id/progreesBarTwilio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_six" />
+        </LinearLayout>
+
+        <com.twilio.video.VideoView
+            android:id="@+id/primary_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:visibility="@{vmTwilio.observableTwilioConnected ? View.VISIBLE : View.GONE}" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="@dimen/margin_twenty"
+                android:background="@android:color/holo_blue_dark"
+                android:clickable="@{!vmTwilio.observerProgressBar}"
+                android:onClick="@{() -> vmTwilio.onMuteClick()}"
+                android:padding="10dp"
+                android:text="@{vmTwilio.observableMute ? @string/unmute : @string/mute}"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="@dimen/margin_twenty"
+                android:background="@android:color/holo_blue_dark"
+                android:clickable="@{!vmTwilio.observerProgressBar}"
+                android:onClick="@{() -> vmTwilio.onDisconnectClick()}"
+                android:padding="10dp"
+                android:text="@{vmTwilio.observableTwilioConnected ? @string/disconnect : @string/connect}"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+            <com.twilio.video.VideoView
+                android:id="@+id/thumbnail_video_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:tviMirror="true"
+                app:tviOverlaySurface="true" />
+        </LinearLayout>
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmTwilio.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

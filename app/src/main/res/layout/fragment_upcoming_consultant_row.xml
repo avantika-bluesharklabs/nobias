@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="layoutPosition"
+            type="Integer" />
+
+        <variable
+            name="isConsultant"
+            type="Boolean" />
+
+        <variable
+            name="data"
+            type="com.nobias.businesslogic.pojo.PojoPastConsultants" />
+
+        <variable
+            name="requestOptions"
+            type="com.bumptech.glide.request.RequestOptions" />
+
+        <variable
+            name="onContentClickListener"
+            type="com.nobias.businesslogic.interfaces.OnClickUpcomingConsultant" />
+    </data>
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipeNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/llSwipe"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgReschedule"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin_twenty"
+                android:paddingRight="@dimen/margin_twenty"
+                android:background="@color/colorReschedule"
+                android:visibility="@{isConsultant ? View.VISIBLE : View.GONE}"
+                android:onClick="@{(v) -> onContentClickListener.onClickReschedule(v, layoutPosition, data)}"
+                app:srcCompat="@drawable/ic_clock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/margin_twenty"
+                android:paddingRight="@dimen/margin_twenty"
+                android:background="@color/colorDelete"
+                android:onClick="@{(v) -> onContentClickListener.onClickDeleteAppointment(v, layoutPosition, data)}"
+                app:srcCompat="@drawable/ic_delete" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/placeholder_circle_small"
+                app:glideRequestOptions="@{requestOptions}"
+                app:glideUrl="@{!TextUtils.isEmpty(data.user.profileThumbPath) ? data.user.profileThumbPath : data.consultant.profileThumbPath}" />
+
+            <LinearLayout
+                android:id="@+id/linearUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/txtStatus"
+                android:layout_toRightOf="@+id/imgUser"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    style="@style/textStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{!TextUtils.isEmpty(data.user.name) ? data.user.name : data.consultant.name ?? ""}'
+                    tools:text="Consultant Name" />
+
+                <TextView
+                    android:id="@+id/txtDateTime"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{data.timeReadable ?? ""}'
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/textsize_twelve"
+                    tools:text="Consulting DateTime" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtStatusPending"
+                style="@style/textStylePendingConsultant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_ten"
+                android:background="@color/colorOrange"
+                android:onClick="@{(v) -> onContentClickListener.onClickConsultantStatus(v, layoutPosition, data)}"
+                android:text='@{data.status ?? ""}'
+                android:visibility='@{isConsultant ? (TextUtils.equals(data.status,"pending") ? View.VISIBLE : View.GONE) : View.GONE}' />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_ten"
+                android:text='@{data.status ?? ""}'
+                android:textColor="@color/colorAccent"
+                android:visibility='@{!isConsultant ? (TextUtils.equals(data.status,"pending") ? View.VISIBLE : View.GONE) : View.GONE}' />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_ten"
+                android:visibility='@{!TextUtils.equals(data.status,"pending") ? View.VISIBLE : View.GONE}'>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_ten"
+                    android:layout_marginRight="@dimen/margin_ten"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> onContentClickListener.onClickConsultantReminder(v, layoutPosition, data)}"
+                    android:src='@{TextUtils.equals(data.reminder, "true") ? @drawable/icon_notification_enable : @drawable/icon_notification_disabled}' />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_ten"
+                    android:layout_marginRight="@dimen/margin_ten"
+                    android:clickable="true"
+                    android:onClick="@{(v) -> onContentClickListener.onClickConsultantVideo(v, layoutPosition, data)}"
+                    android:src='@{data.twilioAvailable ? @drawable/icon_video_enabled : @drawable/icon_video_disabled}'/>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/imgUser"
+                android:background="@android:color/darker_gray" />
+        </RelativeLayout>
+    </com.daimajia.swipe.SwipeLayout>
+</layout>

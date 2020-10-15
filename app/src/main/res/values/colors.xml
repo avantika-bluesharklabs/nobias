@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#081d1d1f</color>
+    <color name="colorPrimaryDark">@android:color/darker_gray</color>
+    <color name="colorAccent">#2fb3c8</color>
+    <color name="colorOrange">#f36f5f</color>
+    <color name="colorLightOrange">#B3f36f5f</color>
+    <color name="colorButton">#2fb3c8</color>
+    <color name="colorFBButton">#3b5998</color>
+    <color name="colorBlack">#272727</color>
+    <color name="colorUpcomingConsultant">#2fb3c8</color>
+    <color name="colorLogout">#cccccc</color>
+    <color name="colorError">#FFDD2C00</color>
+    <color name="colorReschedule">#5AB0C4</color>
+    <color name="colorDelete">#C0382B</color>
+</resources>

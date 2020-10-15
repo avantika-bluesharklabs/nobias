@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="vmPastConsultantList"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelPastConsultant"/>
+
+        <variable
+            name="onContentClickListener"
+            type="com.nobias.businesslogic.interfaces.OnClickPastConsultant" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        app:showSnackBarInt="@{vmPastConsultantList.observerSnackBarInt}"
+        app:showSnackBarString="@{vmPastConsultantList.observerSnackBarString}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout style="@style/constraintMainList">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                style="@style/parentTouch"
+                app:refreshListener="@{vmPastConsultantList.refreshListener}"
+                app:setEnabledSwipeRefresh="@{vmPastConsultantList.observerEnabledSwipeRefresh}"
+                app:setSwipeRefreshing="@{vmPastConsultantList.observerSwipeRefreshing}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    style="@style/recyclerView"
+                    app:recyclerManagerPastConsultant="@{vmPastConsultantList.layoutManager}"
+                    app:adapterPastConsultant="@{vmPastConsultantList.observerContent}"
+                    app:clickListenerPastConsultant="@{onContentClickListener}"
+                    app:scrollListenerPastConsultant="@{vmPastConsultantList.scrollListener}"/>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <TextView
+                style="@style/noRecordFound"
+                android:text="@{vmPastConsultantList.observerNoRecords}"
+                android:visibility="@{!vmPastConsultantList.observerProgressBar ? (vmPastConsultantList.observerContent.size() > 0 ? View.GONE : View.VISIBLE) : View.GONE}"/>
+
+            <ProgressBar
+                style="@style/progressBarCentre"
+                android:visibility="@{vmPastConsultantList.observerProgressBar ? View.VISIBLE : View.GONE}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

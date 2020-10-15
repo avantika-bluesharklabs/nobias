@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="activity"
+            type="com.nobias.view.activities.ActivityLogin" />
+
+        <variable
+            name="vmLogin"
+            type="com.nobias.businesslogic.viewmodel.activities.ViewModelLogin" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:showSnackBarInt="@{vmLogin.observerSnackBarInt}"
+        app:showSnackBarString="@{vmLogin.observerSnackBarString}">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_twelve">
+
+            <ImageView
+                android:id="@+id/imageview_login_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_twenty"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/logo_nobias"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_login_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_forty"
+                android:hint="@string/emailAddress"
+                android:importantForAutofill="no"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="@{vmLogin.observerErrorEnabledEmail}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_login_logo"
+                app:setEnabledTIL="@{!vmLogin.observerProgressBar}"
+                app:setError="@{vmLogin.observerErrorEmail}">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/icon_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textWebEmailAddress"
+                    android:singleLine="true"
+                    android:text="@={vmLogin.observerEmail}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_login_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:importantForAutofill="no"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="@{vmLogin.observerErrorEnabledPassword}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_login_email"
+                app:setEnabledTIL="@{!vmLogin.observerProgressBar}"
+                app:setError="@{vmLogin.observerErrorPassword}">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/icon_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:text="@={vmLogin.observerPassword}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Switch
+                android:id="@+id/switch_remember_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_twelve"
+                android:checked="true"
+                android:text="@string/rememberMe"
+                android:textAllCaps="true"
+                android:theme="@style/SwitchTheme"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_login_password"
+                tools:checked="true" />
+
+            <TextView
+                android:id="@+id/txtCreateAccount"
+                style="@style/textStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_twelve"
+                android:layout_marginEnd="@dimen/margin_four"
+                android:clickable="true"
+                android:text="@string/createAccount"
+                android:textColor="@color/colorOrange"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_login_password" />
+
+            <RelativeLayout
+                android:id="@+id/relativeButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_twelve"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/txtCreateAccount">
+
+                <Button
+                    android:id="@+id/button_login"
+                    style="@style/buttonStyleMargin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_ten"
+                    android:clickable="@{!vmLogin.observerProgressBar}"
+                    android:onClick="@{() -> vmLogin.onLoginClick()}"
+                    android:padding="@dimen/margin_ten"
+                    android:textSize="@dimen/textsize_sixteen"
+                    app:boldText="@{@string/getStarted}"
+                    app:regularText="@{@string/lets}" />
+
+                <Button
+                    android:id="@+id/button_login_with_facebook"
+                    style="@style/buttonStyleMargin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button_login"
+                    android:background="@color/colorFBButton"
+                    android:clickable="@{!vmLogin.observerProgressBar}"
+                    android:onClick="@{() -> vmLogin.onLoginWithFacebookClick()}"
+                    android:padding="@dimen/margin_ten"
+                    android:textSize="@dimen/textsize_sixteen"
+                    app:boldText="@{@string/facebook}"
+                    app:regularText="@{@string/loginWith}" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    style="@style/textStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:textSize="@dimen/textsize_forteen"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> vmLogin.onTermsOfServiceClick()}"
+                    android:text="@string/terms_of_service" />
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/textsize_forteen"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{() -> vmLogin.onResetPasswordClick()}"
+                    android:text="@string/reset_password"
+                    android:textColor="@color/colorOrange" />
+
+                <TextView
+                    style="@style/textStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize_forteen"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="@{() -> vmLogin.onPrivacyPolicyClick()}"
+                    android:text="@string/privacy_policy" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmLogin.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

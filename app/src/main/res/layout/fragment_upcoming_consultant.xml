@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="vmUpcomingConsultantList"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelUpcomingConsultant"/>
+
+        <variable
+            name="onContentClickListener"
+            type="com.nobias.businesslogic.interfaces.OnClickUpcomingConsultant" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        app:showSnackBarInt="@{vmUpcomingConsultantList.observerSnackBarInt}"
+        app:showSnackBarString="@{vmUpcomingConsultantList.observerSnackBarString}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout style="@style/constraintMainList">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                style="@style/parentTouch"
+                app:refreshListener="@{vmUpcomingConsultantList.refreshListener}"
+                app:setEnabledSwipeRefresh="@{vmUpcomingConsultantList.observerEnabledSwipeRefresh}"
+                app:setSwipeRefreshing="@{vmUpcomingConsultantList.observerSwipeRefreshing}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerConsultantList"
+                    style="@style/recyclerView"
+                    app:recyclerManagerUpcomingConsultant="@{vmUpcomingConsultantList.layoutManager}"
+                    app:adapterUpcomingConsultant="@{vmUpcomingConsultantList.observerContent}"
+                    app:clickListenerUpcomingConsultant="@{onContentClickListener}"
+                    app:scrollListenerUpcomingConsultant="@{vmUpcomingConsultantList.scrollListener}"/>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <TextView
+                style="@style/noRecordFound"
+                android:text="@{vmUpcomingConsultantList.observerNoRecords}"
+                android:visibility="@{!vmUpcomingConsultantList.observerProgressBar ? (vmUpcomingConsultantList.observerContent.size() > 0 ? View.GONE : View.VISIBLE) : View.GONE}"/>
+
+            <ProgressBar
+                style="@style/progressBarCentre"
+                android:visibility="@{vmUpcomingConsultantList.observerProgressBar ? View.VISIBLE : View.GONE}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <!--<variable
+            name="onClickNavHeader"
+            type="com.nobias.businesslogic.interfaces.OnClickNavHeader" />-->
+
+        <variable
+            name="onClickTabItem"
+            type="com.google.android.material.tabs.TabLayout.OnTabSelectedListener" />
+
+        <variable
+            name="vmNobias"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelNobias" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/placeholder_circle_big"
+            app:glideRequestOptions="@{vmNobias.requestOptionCentreProfilePic}"
+            app:glideUrl="@{vmNobias.observerPic}" />
+
+        <TextView
+            android:id="@+id/txtUserName"
+            style="@style/textStyleBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_six"
+            android:text="@={vmNobias.observerUserName}"
+            android:textSize="@dimen/textsize_twenty" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/margin_two"
+            android:text="@={vmNobias.observerTitle}"
+            android:textSize="@dimen/textsize_sixteen" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsConsultant"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_thirty_six"
+            android:layout_marginLeft="@dimen/margin_ten"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/margin_ten"
+            android:background="@drawable/nobias_tab_bg_selector"
+            app:tabBackground="@drawable/nobias_tab_bg_selector"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/AppTabTextAppearance"
+            app:tabTextColor="@color/colorBlack">
+            <!--
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabPastConsultant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="top"
+                            android:text="@string/past_consultant" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabUpcomingConsultant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="top"
+                            android:text="@string/upcoming_consultant" />
+            -->
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/nobiasPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

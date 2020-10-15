@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--All dp(s)-->
+    <dimen name="appbar_height">56dp</dimen>
+    <dimen name="margin_zero">0dp</dimen>
+    <dimen name="margin_one">1dp</dimen>
+    <dimen name="margin_two">2dp</dimen>
+    <dimen name="margin_three">3dp</dimen>
+    <dimen name="margin_four">4dp</dimen>
+    <dimen name="margin_six">6dp</dimen>
+    <dimen name="margin_eight">8dp</dimen>
+    <dimen name="margin_ten">10dp</dimen>
+    <dimen name="margin_twelve">12dp</dimen>
+    <dimen name="margin_fourteen">14dp</dimen>
+    <dimen name="margin_sixteen">16dp</dimen>
+    <dimen name="margin_eighteen">18dp</dimen>
+    <dimen name="margin_twenty">20dp</dimen>
+    <dimen name="margin_twenty_two">22dp</dimen>
+    <dimen name="margin_twentyfour">24dp</dimen>
+    <dimen name="margin_twentysix">26dp</dimen>
+    <dimen name="margin_twentyeight">28dp</dimen>
+    <dimen name="margin_thirty">30dp</dimen>
+    <dimen name="margin_thirtytwo">32dp</dimen>
+    <dimen name="margin_thirtyFour">34dp</dimen>
+    <dimen name="margin_thirty_six">36dp</dimen>
+    <dimen name="margin_forty">40dp</dimen>
+    <dimen name="margin_forty_four">44dp</dimen>
+    <dimen name="margin_fourtysix">46dp</dimen>
+    <dimen name="margin_forty_eight">48dp</dimen>
+    <dimen name="margin_fifty">50dp</dimen>
+    <dimen name="margin_fiftytwo">52dp</dimen>
+    <dimen name="margin_fifty_four">54dp</dimen>
+    <dimen name="margin_fiftysix">56dp</dimen>
+    <dimen name="margin_sixty_two">62dp</dimen>
+    <dimen name="margin_sixtyfour">64dp</dimen>
+    <dimen name="margin_sixtysix">66dp</dimen>
+
+    <dimen name="margin_eighty">80dp</dimen>
+    <dimen name="margin_one_hundred">100dp</dimen>
+    <dimen name="margin_one_hundred_thirty">130dp</dimen>
+    <dimen name="detail_imageview_height">190dp</dimen>
+
+    <dimen name="progressbar_center">50dp</dimen>
+    <dimen name="margin_fortyeight">48dp</dimen>
+
+    <!--All sp(s)-->
+    <dimen name="textsize_eight">8sp</dimen>
+    <dimen name="textsize_nine">9sp</dimen>
+    <dimen name="textsize_ten">10sp</dimen>
+    <dimen name="textsize_twelve">12sp</dimen>
+    <dimen name="textsize_forteen">14sp</dimen>
+    <dimen name="textsize_sixteen">16sp</dimen>
+    <dimen name="textsize_eighteen">18sp</dimen>
+    <dimen name="textsize_twenty">20sp</dimen>
+    <dimen name="textsize_twenty_two">22sp</dimen>
+    <dimen name="textsize_twentyfour">24sp</dimen>
+    <dimen name="textsize_twentyeight">28sp</dimen>
+    <dimen name="textsize_thirty">30sp</dimen>
+    <dimen name="textsize_thirtyTwo">32sp</dimen>
+    <dimen name="textsize_thirtyfour">34sp</dimen>
+    <dimen name="textsize_thirtySix">36sp</dimen>
+    <dimen name="margin_hundred_fifty">150dp</dimen>
+
+</resources>

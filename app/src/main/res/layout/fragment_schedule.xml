@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmSchedule"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelSchedule" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtSessionDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_ten"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/session_date"
+            android:importantForAutofill="no"
+            android:textColorHint="@color/colorAccent"
+            app:errorEnabled="@{vmSchedule.observerErrorEnabledSessionDate}"
+            app:setEnabledTIL="@{!vmSchedule.observerProgressBar}"
+            app:setError="@{vmSchedule.observerErrorSessionDate}">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none"
+                android:onClick="@{() -> vmSchedule.onDateClick()}"
+                android:singleLine="true"
+                android:text="@={vmSchedule.observerSessionDate}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtSessionTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/txtSessionDate"
+            android:layout_marginRight="20dp"
+            android:text="@string/session_topic" />
+
+        <Spinner
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:id="@+id/spnSelectTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/txtSessionTopic"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:onItemSelected="@{(p, v, pos, id) -> vmSchedule.onItemSelectedSessionTopicSelection(pos)}"
+            android:selectedItemPosition="@={vmSchedule.observerSessionTopicPosition}"
+            app:arraySpeciality="@{vmSchedule.observerListSessionTopic}"
+            app:arrayPosition="@{vmSchedule.observerSessionTopicPosition}"/>
+
+        <TextView
+            android:id="@+id/textview_session_topic_dropdown_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_sixteen"
+            android:layout_marginStart="@dimen/margin_sixteen"
+            android:text="@string/error_select_session_topic"
+            android:textColor="@color/colorError"
+            android:visibility="@{vmSchedule.observerSessionTopicErrorVisibility ? View.VISIBLE : View.GONE}"
+           android:layout_below="@+id/spnSelectTopic"/>
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="@android:color/holo_blue_dark"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@+id/textview_session_topic_dropdown_error"
+            android:text="@string/btn_continue"
+            android:clickable="@{!vmSchedule.observerProgressBar}"
+            android:onClick="@{() -> vmSchedule.onContinueClick()}"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmSchedule.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

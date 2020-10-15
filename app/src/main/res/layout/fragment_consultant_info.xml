@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmConsultantInfo"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelConsultantInfo" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/relativeConsultant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorUpcomingConsultant"
+            android:orientation="horizontal"
+            android:visibility="@{vmConsultantInfo.observableDataLoaded ? View.VISIBLE : View.GONE}">
+
+            <ImageView
+                android:id="@+id/imgUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/placeholder_circle_big"
+                android:layout_margin="10dp"
+                app:glideRequestOptions="@{vmConsultantInfo.requestOptionCentreProfilePic}"
+                app:glideUrl="@{vmConsultantInfo.observerPic}" />
+
+            <LinearLayout
+                android:id="@+id/linearUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgUser"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    style="@style/textStyleBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='@{vmConsultantInfo.observerName ?? ""}'
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textsize_eighteen"
+                    tools:text="Name" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    style="@style/textStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='@{vmConsultantInfo.observerTitle ?? ""}'
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textsize_twelve"
+                    tools:text="datetime" />
+
+                <RatingBar
+                    android:id="@+id/rtrStar"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/RatingBarInfo"
+                    app:setRating='@{vmConsultantInfo.observerRating}' />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmConsultantInfo.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

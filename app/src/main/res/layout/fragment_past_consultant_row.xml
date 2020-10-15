@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="layoutPosition"
+            type="Integer" />
+
+        <variable
+            name="data"
+            type="com.nobias.businesslogic.pojo.PojoPastConsultants" />
+        <variable
+            name="requestOptions"
+            type="com.bumptech.glide.request.RequestOptions"/>
+
+        <variable
+            name="onContentClickListener"
+            type="com.nobias.businesslogic.interfaces.OnClickPastConsultant" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{(v) -> onContentClickListener.onClickPastConsultantRating(v, layoutPosition, data)}">
+
+        <ImageView
+            android:id="@+id/imgUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/placeholder_circle_small"
+            android:layout_margin="10dp"
+            app:glideRequestOptions="@{requestOptions}"
+            app:glideUrl="@{!TextUtils.isEmpty(data.user.profileThumbPath) ? data.user.profileThumbPath : data.consultant.profileThumbPath}" />
+
+        <LinearLayout
+            android:id="@+id/linearUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/rtrStar"
+            android:layout_toRightOf="@+id/imgUser"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='@{!TextUtils.isEmpty(data.user.name) ? data.user.name : data.consultant.name ?? ""}'
+                style="@style/textStyleBold"
+                tools:text="Name"/>
+
+            <TextView
+                android:id="@+id/txtDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textStyle"
+                tools:text="datetime"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/textsize_twelve"
+                android:text='@{data.timeReadable ?? ""}'/>
+
+        </LinearLayout>
+
+        <RatingBar
+            android:id="@+id/rtrStar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:theme="@style/RatingBar"
+            android:layout_marginRight="@dimen/margin_ten"
+            android:layout_centerVertical="true"
+            app:setRating='@{data.rating}' />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_below="@+id/imgUser"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    </RelativeLayout>
+</layout>

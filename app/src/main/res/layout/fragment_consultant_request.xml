@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmConsultantSaveRequest"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelConsultantSaveRequest" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTell"
+            style="@style/textStyleBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_twenty"
+            android:layout_marginTop="@dimen/margin_twenty"
+            android:layout_marginRight="@dimen/margin_twenty"
+            android:text="@string/consulting_needs" />
+
+        <EditText
+            android:id="@+id/edtNeeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTell"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_bg"
+            android:gravity="top"
+            android:text="@={vmConsultantSaveRequest.observerNeeds}"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/textview_needs_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_sixteen"
+            android:layout_marginStart="@dimen/margin_sixteen"
+            android:text="@string/error_consultant_needs"
+            android:textColor="@color/colorError"
+            android:layout_marginTop="@dimen/margin_six"
+            android:visibility="@{vmConsultantSaveRequest.observerNeedsErrorVisibility ? View.VISIBLE : View.GONE}"
+            android:layout_below="@+id/edtNeeds"/>
+        <Button
+            android:id="@+id/btnSaveRequest"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview_needs_error"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:clickable="@{!vmConsultantSaveRequest.observerProgressBar}"
+            android:onClick="@{() -> vmConsultantSaveRequest.onSaveRequestClick()}"
+            android:padding="@dimen/margin_ten"
+            android:text="@string/save_request"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmConsultantSaveRequest.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

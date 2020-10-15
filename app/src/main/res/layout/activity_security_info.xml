@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="activity"
+            type="com.nobias.view.activities.ActivitySecurityInfo" />
+
+        <variable
+            name="vmSecurityInfo"
+            type="com.nobias.businesslogic.viewmodel.activities.ViewModelSecurityInfo" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textsize_twenty"
+            app:boldText="@{@string/info}"
+            app:regularText="@{@string/security}"
+            app:theme="@style/customToolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/toolbar_title"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_ten"
+                android:hint="@string/please_create_a_password"
+                android:importantForAutofill="no"
+                android:textColorHint="@color/colorAccent"
+                app:errorEnabled="@{vmSecurityInfo.observerErrorEnabledPassword}"
+                app:setEnabledTIL="@{!vmSecurityInfo.observerProgressBar}"
+                app:setError="@{vmSecurityInfo.observerErrorPassword}">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:text="@={vmSecurityInfo.observerPassword}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textinputlayout_password"
+                android:layout_marginTop="@dimen/margin_sixteen"
+                android:hint="Please re enter your password"
+                android:importantForAutofill="no"
+                android:textColorHint="@color/colorAccent"
+                app:errorEnabled="@{vmSecurityInfo.observerErrorEnabledConfirmPassword}"
+                app:setEnabledTIL="@{!vmSecurityInfo.observerProgressBar}"
+                app:setError="@{vmSecurityInfo.observerErrorConfirmPassword}">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:text="@={vmSecurityInfo.observerConfirmPassword}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_continue"
+                style="@style/buttonStyleMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textinputlayout_confirm_password"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:clickable="@{!vmSecurityInfo.observerProgressBar}"
+                android:gravity="center"
+                android:onClick="@{() -> vmSecurityInfo.onLetsContinue()}"
+                android:padding="10dp"
+                app:regularText="@{@string/lets}"
+                app:boldText="@{@string/continue_info}" />
+
+            <TextView
+                android:id="@+id/txtCreateAccountText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="40dp"
+                android:fontFamily="@font/hypatiasanspro_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/security_info_text"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="20sp" />
+
+            <ProgressBar
+                style="@style/progressBarCentre"
+                android:visibility="@{vmSecurityInfo.observerProgressBar ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

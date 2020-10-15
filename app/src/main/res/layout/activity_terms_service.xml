@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmTerm"
+            type="com.nobias.businesslogic.viewmodel.activities.ViewModelTermsOfService" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        app:showSnackBarInt="@{vmTerm.observerSnackBarInt}"
+        app:showSnackBarString="@{vmTerm.observerSnackBarString}">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textsize_twenty"
+            app:boldText="@{@string/service}"
+            app:regularText="@{@string/terms_of}"
+            app:theme="@style/customToolbar" />
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_title"
+            android:padding="@dimen/margin_twenty"
+            android:scrollbars="none"
+            app:loadText="@{vmTerm.observerText}"
+            app:loadUrl="@{vmTerm.observerUrl}" />
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmTerm.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,92 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="layoutPosition"
+            type="Integer" />
+
+        <variable
+            name="data"
+            type="com.nobias.businesslogic.pojo.PojoUser" />
+
+        <variable
+            name="requestOptions"
+            type="com.bumptech.glide.request.RequestOptions" />
+
+        <variable
+            name="onContentClickListener"
+            type="com.nobias.businesslogic.interfaces.OnClickConsultants" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/relativeConsultant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/btnInfo"
+            android:onClick="@{(v) -> onContentClickListener.onClickConsultant(v, layoutPosition, data)}">
+
+            <ImageView
+                android:id="@+id/imgUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/placeholder_circle_small"
+                app:glideRequestOptions="@{requestOptions}"
+                app:glideUrl="@{data.profileThumbPath}" />
+
+            <LinearLayout
+                android:id="@+id/linearUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                android:layout_toRightOf="@+id/imgUser"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    style="@style/textStyleBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='@{data.name ?? ""}' />
+
+                <TextView
+                    android:id="@+id/txtProfile"
+                    style="@style/textStyle"
+                    android:padding="@dimen/margin_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='@{data.company + " - " + data.title ?? ""}' />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btnInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_ten"
+            android:onClick="@{(v) -> onContentClickListener.onClickConsultantInfo(v, layoutPosition, data)}"
+            android:src="@drawable/icon_info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/relativeConsultant"
+            android:background="@android:color/darker_gray" />
+    </RelativeLayout>
+</layout>

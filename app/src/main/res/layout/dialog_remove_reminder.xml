@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_marginTop="@dimen/margin_thirty"
+            android:layout_marginRight="@dimen/margin_thirty"
+            android:layout_marginLeft="@dimen/margin_thirty"
+            android:layout_marginBottom="@dimen/margin_ten"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textsize_sixteen" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/txtRemoveReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/margin_ten"
+            android:text="@string/remove_reminder"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textsize_eighteen" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/txtCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_ten"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/margin_ten"
+            android:text="@string/message_cancel"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textsize_eighteen" />
+        <!--
+            <ProgressBar
+                style="@style/progressBarCentre"
+                android:visibility="@{vmCreateAccount.observerProgressBar ? View.VISIBLE : View.GONE}" />-->
+    </LinearLayout>
+</layout>

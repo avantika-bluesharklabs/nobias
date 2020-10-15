@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="activity"
+            type="com.nobias.view.activities.ActivityPersonalInfo" />
+
+        <variable
+            name="vmPersonalInfo"
+            type="com.nobias.businesslogic.viewmodel.activities.ViewModelPersonalInfo" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        app:showSnackBarInt="@{vmPersonalInfo.observerSnackBarInt}"
+        app:showSnackBarString="@{vmPersonalInfo.observerSnackBarString}">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textsize_twenty"
+            app:boldText="@{@string/info}"
+            app:regularText="@{@string/personal}"
+            app:theme="@style/customToolbar" />
+
+        <ScrollView
+            android:id="@+id/scrollMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_title">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="@dimen/margin_twelve">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtFirstName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/please_enter_first_name"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledFirstName}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorFirstName}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerFirstName}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtLastName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="@string/last_name"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledLastName}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtFirstName"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorLastName}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerLastName}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="@string/emailAddress"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledEmail}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtLastName"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorEmail}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="textWebEmailAddress"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerEmail}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtConfirmEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="@string/confirm_email_address"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledConfirmEmail}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtEmail"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorConfirmEmail}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="textWebEmailAddress"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerConfirmEmail}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtDOB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="@string/dob"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledDOB}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtConfirmEmail"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorDOB}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="none"
+                        android:onClick="@{() -> vmPersonalInfo.onDateClick()}"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerDOB}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtCompanyName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="@string/company_name"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledCompanyName}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDOB"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorCompanyName}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerCompanyName}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="@string/phone_number"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledPhoneNumber}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtCompanyName"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorPhoneNumber}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerPhoneNumber}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtJobTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:hint="Job Title"
+                    android:importantForAutofill="no"
+                    android:textColorHint="@color/colorAccent"
+                    app:errorEnabled="@{vmPersonalInfo.observerErrorEnabledJobTitle}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumber"
+                    app:setEnabledTIL="@{!vmPersonalInfo.observerProgressBar}"
+                    app:setError="@{vmPersonalInfo.observerErrorJobTitle}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={vmPersonalInfo.observerJobTitle}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/button_continue"
+                    style="@style/buttonStyleMargin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:clickable="@{!vmPersonalInfo.observerProgressBar}"
+                    android:onClick="@{() -> vmPersonalInfo.onContinueClick()}"
+                    android:padding="10dp"
+                    app:boldText="@{@string/continue_info}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtJobTitle"
+                    app:regularText="@{@string/lets}" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmPersonalInfo.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+
+</layout>

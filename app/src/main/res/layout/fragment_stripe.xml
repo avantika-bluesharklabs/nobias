@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmCreditCardInfo"
+            type="com.nobias.businesslogic.viewmodel.fragments.ViewModelStripe" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/margin_four"
+            android:padding="@dimen/margin_four"
+            android:textSize="@dimen/textsize_eighteen"
+            app:boldText="@{@string/info}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:regularText="@{@string/credit_card}" />
+
+        <TextView
+            android:id="@+id/txtSessionTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTitle"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/verify_payment_text" />
+
+        <RelativeLayout
+            android:id="@+id/relativeCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSessionTopic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_twenty"
+            android:visibility="@{vmCreditCardInfo.observerCardAvailable ? View.VISIBLE : View.GONE}">
+
+            <LinearLayout
+                android:id="@+id/linearCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textSize="@dimen/textsize_eighteen"
+                    android:padding="@dimen/margin_six"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vmCreditCardInfo.observableCardType}" />
+
+                <TextView
+                    android:textSize="@dimen/textsize_eighteen"
+                    android:padding="@dimen/margin_six"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vmCreditCardInfo.observableCardNumber}" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgCardType"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearCard"
+                android:layout_centerHorizontal="true"
+               />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txtPaymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeCard"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/margin_twenty"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> vmCreditCardInfo.onPaymentMethodClick()}"
+            android:text="@{vmCreditCardInfo.observerIsCheckout ? @string/verify_payment_method : @string/select_payment_method}"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPaymentMethod"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/holo_blue_dark"
+            android:clickable="@{!vmCreditCardInfo.observerProgressBar}"
+            android:onClick="@{() -> vmCreditCardInfo.onContinueClick()}"
+            android:padding="10dp"
+            android:text="@{vmCreditCardInfo.observerIsCheckout ? @string/text_submit : @string/save}"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <ProgressBar
+            style="@style/progressBarCentre"
+            android:visibility="@{vmCreditCardInfo.observerProgressBar ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

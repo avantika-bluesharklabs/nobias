@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <!--<variable
+            name="onClickNavHeader"
+            type="com.nobias.businesslogic.interfaces.OnClickNavHeader" />-->
+
+        <variable
+            name="onClickTabItem"
+            type="com.google.android.material.tabs.TabLayout.OnTabSelectedListener" />
+
+        <variable
+            name="vmMain"
+            type="com.nobias.businesslogic.viewmodel.activities.ViewModelMain" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+             <include
+                 android:id="@+id/toolbar"
+                 layout="@layout/app_bar" />
+
+            <FrameLayout
+                android:id="@+id/frame_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#34000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{vmMain.observerProgressBar ? View.VISIBLE : View.GONE}">
+
+            <ProgressBar
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </RelativeLayout>
+</layout>

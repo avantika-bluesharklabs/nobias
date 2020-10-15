@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmCreateAccount"
+            type="com.nobias.businesslogic.viewmodel.activities.ViewModelCreateAccount" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/customToolbar"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/toolbar_title"
+            android:textSize="@dimen/textsize_twenty"
+            app:regularText="@{@string/register}"
+            app:boldText="@{@string/info}"
+            android:textColor="@color/colorBlack"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtCreateAccountText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/hypatiasanspro_regular"
+                android:text="@string/create_account_text"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button_user"
+                    style="@style/buttonStyleMargin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="@{!vmCreateAccount.observerProgressBar}"
+                    android:onClick="@{() -> vmCreateAccount.onIAmUserClick()}"
+                    app:regularText="@{@string/i_am_a}"
+                    app:boldText="@{@string/user}" />
+
+                <Button
+                    android:id="@+id/button_consultant"
+                    style="@style/buttonStyleMargin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="@{!vmCreateAccount.observerProgressBar}"
+                    android:onClick="@{() -> vmCreateAccount.onIAmConsultantClick()}"
+                    app:regularText="@{@string/i_am_a}"
+                    app:boldText="@{@string/consultant}"
+                    />
+            </LinearLayout>
+
+            <ProgressBar
+                style="@style/progressBarCentre"
+                android:visibility="@{vmCreateAccount.observerProgressBar ? View.VISIBLE : View.GONE}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
