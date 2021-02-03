@@ -33,8 +33,7 @@
         tools:ignore="LockedOrientationActivity">
         <activity
             android:name=".view.activities.ActivitySplash"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -10,6 +10,7 @@ import com.nobias.R;
 import com.nobias.businesslogic.interactors.ObservableString;
 import com.nobias.businesslogic.interactors.SingleLiveEvent;
 import com.nobias.businesslogic.pojo.PojoCommonResponse;
+import com.nobias.businesslogic.viewmodel.ViewModelCommon;
 import com.nobias.businesslogic.viewmodel.ViewModelRecyclerView;
 
 /**
@@ -17,7 +18,7 @@ import com.nobias.businesslogic.viewmodel.ViewModelRecyclerView;
  * <p>
  * View model for attendance log
  */
-public class ViewModelScheduleTab extends ViewModelRecyclerView<PojoCommonResponse, PojoCommonResponse> {
+public class ViewModelScheduleTab extends ViewModelCommon<PojoCommonResponse> {
     public ObservableString observerConsultantCode = new ObservableString("");
     public ObservableString observerDate = new ObservableString("");
 
@@ -93,19 +94,10 @@ public class ViewModelScheduleTab extends ViewModelRecyclerView<PojoCommonRespon
     }
 
     @Override
-    public void refreshListUpdate() {
-
+    public void networkCallData() {
     }
 
     @Override
-    public void networkCallList() {
-    }
-
-    @Override
-    public void offlineDataList() {
-    }
-
-    @Override
-    public void sendResponseBodyList(PojoCommonResponse list) {
+    public void sendResponseBodyData(PojoCommonResponse list) {
     }
 }

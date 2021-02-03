@@ -13,6 +13,7 @@ import com.nobias.businesslogic.interactors.ObservableString;
 import com.nobias.businesslogic.interactors.SingleLiveEvent;
 import com.nobias.businesslogic.pojo.PojoCommonResponse;
 import com.nobias.businesslogic.pojo.PojoSpeciality;
+import com.nobias.businesslogic.viewmodel.ViewModelCommon;
 import com.nobias.businesslogic.viewmodel.ViewModelRecyclerView;
 
 /**
@@ -20,7 +21,7 @@ import com.nobias.businesslogic.viewmodel.ViewModelRecyclerView;
  * <p>
  * View model for attendance log
  */
-public class ViewModelSchedule extends ViewModelRecyclerView<PojoCommonResponse, PojoCommonResponse> {
+public class ViewModelSchedule extends ViewModelCommon<PojoCommonResponse> {
     public ObservableList<PojoSpeciality> observerListSessionTopic = new ObservableArrayList<>();
     public ObservableBoolean observerSessionTopicErrorVisibility = new ObservableBoolean(false);
 
@@ -80,28 +81,18 @@ public class ViewModelSchedule extends ViewModelRecyclerView<PojoCommonResponse,
 
     public ViewModelSchedule(MyApplication application) {
         super(application, false);
-        fetchDataList();
+        networkCallData();
     }
 
     @Override
-    public void refreshListUpdate() {
-
-    }
-
-    @Override
-    public void networkCallList() {
+    public void networkCallData() {
         setProgressBar(true);
         mApplication.getRetroFitInterface().getSpeciality(mPreferences.getString(R.string.prefAccessToken))
-                .enqueue(mCallbackList);
+                .enqueue(mCallbackData);
     }
 
     @Override
-    public void offlineDataList() {
-
-    }
-
-    @Override
-    public void sendResponseBodyList(PojoCommonResponse list) {
+    public void sendResponseBodyData(PojoCommonResponse list) {
         if (list.getSuccess() && list.getSpecialties().size() > 0) {
             observerListSessionTopic.addAll(list.getSpecialties());
 

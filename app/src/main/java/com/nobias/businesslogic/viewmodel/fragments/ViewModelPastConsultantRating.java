@@ -7,6 +7,7 @@ import com.nobias.R;
 import com.nobias.businesslogic.interactors.ObservableString;
 import com.nobias.businesslogic.interactors.SingleLiveEvent;
 import com.nobias.businesslogic.pojo.PojoCommonResponse;
+import com.nobias.businesslogic.viewmodel.ViewModelCommon;
 import com.nobias.businesslogic.viewmodel.ViewModelRecyclerView;
 
 import static com.nobias.utils.constants.RetrofitConstants.METHOD_GET_APPOINTMENT;
@@ -17,7 +18,7 @@ import static com.nobias.utils.constants.RetrofitConstants.METHOD_RATE;
  * <p>
  * View model for attendance log
  */
-public class ViewModelPastConsultantRating extends ViewModelRecyclerView<PojoCommonResponse, PojoCommonResponse> {
+public class ViewModelPastConsultantRating extends ViewModelCommon<PojoCommonResponse> {
     public ObservableInt observerRating = new ObservableInt();
     public ObservableString observerAppointmentId = new ObservableString();
 
@@ -42,32 +43,18 @@ public class ViewModelPastConsultantRating extends ViewModelRecyclerView<PojoCom
         observerRating.set(mRating);
     }
 
-    public void onRatingChanged()
-    {
-
-    }
-
     @Override
-    public void refreshListUpdate() {
-    }
-
-    @Override
-    public void networkCallList() {
+    public void networkCallData() {
         setProgressBar(true);
         mApplication.getRetroFitInterface().ratePostConsultant(mPreferences.getString(R.string.prefAccessToken),
                 METHOD_GET_APPOINTMENT + "/" + observerAppointmentId.getTrimmed() +
                         METHOD_RATE, String.valueOf(observerRating.get()))
-                .enqueue(mCallbackList);
+                .enqueue(mCallbackData);
 
     }
 
     @Override
-    public void offlineDataList() {
-
-    }
-
-    @Override
-    public void sendResponseBodyList(PojoCommonResponse list) {
+    public void sendResponseBodyData(PojoCommonResponse list) {
         if (list.getSuccess()) {
             liveEventSuccess.call();
         } else {

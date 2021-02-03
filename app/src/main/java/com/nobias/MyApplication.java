@@ -225,7 +225,8 @@ public class MyApplication extends Application {
     {
         PaymentConfiguration.init(
                 getApplicationContext(),
-                "pk_test_bqTMtr8h63C7XidLMVNIu5df"
+                //"pk_test_bqTMtr8h63C7XidLMVNIu5df"
+               "pk_test_51HcB0bExhYN5hL5FfvIZLfrzbfftAOVZjIPm9MnkOsJkicWAorcyZ78j6uo4xEp9kWN8AscRaR5ql137qszYCfb200zWvEmvoI"
         );
 
         if(!TextUtils.isEmpty(getAppSharedPreferences().getString(R.string.prefStripId))) {

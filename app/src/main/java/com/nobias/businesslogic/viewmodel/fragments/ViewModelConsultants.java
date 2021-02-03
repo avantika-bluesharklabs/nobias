@@ -36,7 +36,7 @@ public class ViewModelConsultants extends ViewModelRecyclerView<PojoCommonRespon
 
     @Override
     public void refreshListUpdate() {
-
+        observerContent.clear();
     }
 
     @Override
@@ -64,6 +64,7 @@ public class ViewModelConsultants extends ViewModelRecyclerView<PojoCommonRespon
     @Override
     public void sendResponseBodyList(PojoCommonResponse list) {
         if (list.getSuccess()) {
+
             if (list.getPojoConsultant().size() > 0)
                 observerContent.addAll(list.getPojoConsultant());
             else {

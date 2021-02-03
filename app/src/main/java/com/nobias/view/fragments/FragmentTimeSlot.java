@@ -38,7 +38,7 @@ public class FragmentTimeSlot extends FragmentBase{
         binding.setVmTimeSlot(mVMTimeSlot);
         mParentView = binding.getRoot();
         observerEvents();
-        mVMTimeSlot.fetchDataList();
+        mVMTimeSlot.networkCallData();
         return binding.getRoot();
     }
 

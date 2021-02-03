@@ -12,6 +12,7 @@ import com.nobias.R;
 import com.nobias.businesslogic.interactors.SingleLiveEvent;
 import com.nobias.businesslogic.pojo.PojoCommonResponse;
 import com.nobias.businesslogic.pojo.PojoSaveRequest;
+import com.nobias.businesslogic.viewmodel.ViewModelCommon;
 import com.nobias.businesslogic.viewmodel.ViewModelRecyclerView;
 
 import static com.nobias.utils.constants.RetrofitConstants.METHODD_GET_TIME_SLOT_POSTFIX;
@@ -23,7 +24,7 @@ import static com.nobias.utils.constants.RetrofitConstants.METHOD_GET_TIME_SLOT_
  * <p>
  * View model for attendance log
  */
-public class ViewModelTimeSlot extends ViewModelRecyclerView<PojoCommonResponse, PojoCommonResponse> {
+public class ViewModelTimeSlot extends ViewModelCommon<PojoCommonResponse> {
     public ObservableList<String> observerListTimeSlot = new ObservableArrayList<>();
     public ObservableBoolean observerSessionTopicErrorVisibility = new ObservableBoolean(false);
     public PojoSaveRequest mPojoSaveRequest;
@@ -61,12 +62,7 @@ public class ViewModelTimeSlot extends ViewModelRecyclerView<PojoCommonResponse,
     }
 
     @Override
-    public void refreshListUpdate() {
-
-    }
-
-    @Override
-    public void networkCallList() {
+    public void networkCallData() {
         if (mPojoSaveRequest != null) {
             setProgressBar(true);
             String url = "";
@@ -77,17 +73,12 @@ public class ViewModelTimeSlot extends ViewModelRecyclerView<PojoCommonResponse,
                 url = METHOD_GET_TIME_SLOT_PREFIX + mPojoSaveRequest.getConsultantId() +
                         METHODD_GET_TIME_SLOT_POSTFIX + mPojoSaveRequest.getSessionDate();
             }
-            mApplication.getRetroFitInterface().getTimeSlot(mPreferences.getString(R.string.prefAccessToken), url).enqueue(mCallbackList);
+            mApplication.getRetroFitInterface().getTimeSlot(mPreferences.getString(R.string.prefAccessToken), url).enqueue(mCallbackData);
         }
     }
 
     @Override
-    public void offlineDataList() {
-
-    }
-
-    @Override
-    public void sendResponseBodyList(PojoCommonResponse list) {
+    public void sendResponseBodyData(PojoCommonResponse list) {
         if (list.getSuccess() && list.getAvailableTimes().size() > 0) {
             observerListTimeSlot.addAll(list.getAvailableTimes());
         } else {

@@ -53,7 +53,7 @@ public class FragmentPastConsultantRating extends FragmentBase{
         mVMPastConsultantRating.getLiveEventSave().observe(this, aVoid -> {
             Utils.hideKeyboard(mMainActivity);
             if(mRating != mVMPastConsultantRating.observerRating.get())
-                mVMPastConsultantRating.networkCallList();
+                mVMPastConsultantRating.networkCallData();
         });
 
         mVMPastConsultantRating.getLiveEventSuccess().observe(this, aVoid -> {

@@ -69,6 +69,7 @@ public class ViewModelUpcomingConsultant extends ViewModelRecyclerView<PojoCommo
     @Override
     public void refreshListUpdate() {
         networkCallType = "";
+        observerContent.clear();
         networkCallList();
     }
 
@@ -145,7 +146,6 @@ public class ViewModelUpcomingConsultant extends ViewModelRecyclerView<PojoCommo
             {
                 networkCallType = "";
                 if (pojoCommonResponse.getAppointments().size() > 0) {
-                    observerContent.clear();
                     //observerContent.addAll(pojoCommonResponse.getAppointments());
                     for(int i = 0; i< pojoCommonResponse.getAppointments().size(); i++)
                     {

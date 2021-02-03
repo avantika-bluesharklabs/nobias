@@ -17,6 +17,7 @@ import com.nobias.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -79,8 +80,9 @@ public class UtilsImage {
 
     public static Bitmap getScaledMatrixedBitmapFromFile(File file, int dimension) {
         Matrix matrixForRotation = new Matrix();
-        Bitmap bitmapDecodedFile = getScaledDownBitmapForImageView(file.getAbsolutePath(),
-                dimension);
+        /*Bitmap bitmapDecodedFile = getScaledDownBitmapForImageView(file.getAbsolutePath(),
+                dimension);*/
+        Bitmap bitmapDecodedFile = getBitmapFromAbsolutePath(file.getAbsolutePath());
         if (bitmapDecodedFile == null) {
             return null;
         }
@@ -88,6 +90,20 @@ public class UtilsImage {
         return Bitmap.createBitmap(bitmapDecodedFile, 0, 0,
                 bitmapDecodedFile.getWidth(), bitmapDecodedFile.getHeight(),
                 matrixForRotation, true);
+    }
+
+    private static Bitmap getBitmapFromAbsolutePath(String absolutePath) {
+        Bitmap bitmap = null;
+        try {
+            File f = new File(absolutePath);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+            return bitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
     private static Bitmap getScaledDownBitmapForImageView(String absolutePath, int dimension) {

@@ -224,7 +224,10 @@ public abstract class ViewModelRecyclerView<X, T> {
                 if (commonResponse.getSuccess() || commonResponse.getMessage().startsWith("This appointment"))
                 {
                     //clearDataOnResponse();
-                   // mTotalCount = commonResponse.getTotalCount();
+                    if(commonResponse.getMeta() != null)
+                    {
+                        mTotalCount = commonResponse.getMeta().getTotal();
+                    }
                     sendResponseBodyList(response.body());
                 } else {
                     observerSnackBarInt.set(R.string.message_something_wrong);

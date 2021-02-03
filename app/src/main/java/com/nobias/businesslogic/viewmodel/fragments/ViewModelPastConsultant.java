@@ -25,7 +25,8 @@ public class ViewModelPastConsultant extends ViewModelRecyclerView<PojoCommonRes
 
     @Override
     public void refreshListUpdate() {
-        networkCallList();
+        observerPastConsultantList.clear();
+        observerContent.clear();
     }
 
     @Override
@@ -44,8 +45,8 @@ public class ViewModelPastConsultant extends ViewModelRecyclerView<PojoCommonRes
     public void sendResponseBodyList(PojoCommonResponse pojoCommonResponse) {
         if (pojoCommonResponse.getSuccess()) {
             if (pojoCommonResponse.getPastAppointments().size() > 0) {
-                observerPastConsultantList.clear();
-                observerContent.clear();
+                /*observerPastConsultantList.clear();
+                observerContent.clear();*/
                 observerPastConsultantList.addAll(pojoCommonResponse.getPastAppointments());
                 observerContent.addAll(pojoCommonResponse.getPastAppointments());
             }
